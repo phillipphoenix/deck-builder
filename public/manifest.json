@@ -8,13 +8,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "vercel.svg",
-      "type": "image/svg",
-      "sizes": "192x192"
+      "src": "db_launcher-xxhdpi.png",
+      "type": "image/png",
+      "sizes": "144x144"
     },
     {
-      "src": "vercel.svg",
-      "type": "image/svg",
+      "src": "web_hi_res_512.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
