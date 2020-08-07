@@ -1,0 +1,77 @@
+/**
+ * Defined breakpoints for the frontend and mixins for easier use.
+ * 
+ * Design is mobile-first, which means that if no breakpoints is used, the style holds true for mobile and up.
+ * If the tablet (lg) breakpoint is used it changes the styles for tablets and up.
+ *
+ * Links:
+ * https://medium.com/codeartisan/breakpoints-and-media-queries-in-scss-46e8f551e2f2
+ * https://ricostacruz.com/til/css-media-query-breakpoints
+ *
+ * @section Breakpoints
+ * @author Phillip Phoelich <pph@it-minds.dk>
+ */
+
+// ---------------------------------------------------------------------------
+
+// --- VARIABLES ---
+
+// Smartphones (landscape view).
+$screen-sm-min: 480px;
+
+// Small tablets (portrait view).
+$screen-md-min: 768px;
+
+// Tablets (small tablets landscape view) and small desktops.
+$screen-lg-min: 992px;
+
+// Large tablets and desktops.
+$screen-xl-min: 1200px;
+
+// --- MIXINS ---
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+/*
+/// Example of use.
+.container {
+    /// Styling for all (mobile and up).
+    padding: 0 15px;
+    /// 480px window width and more (mobile landscape and up).
+    @include sm {
+        padding: 0 20px;
+    }
+    /// 992px window width and more (tablets and laptops and up).
+    @include lg {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1100px;
+    }
+}
+*/

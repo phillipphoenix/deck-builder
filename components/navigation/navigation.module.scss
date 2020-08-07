@@ -1,0 +1,40 @@
+@import "variables";
+@import "colours";
+
+.navigation {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  &__bottom {
+    border-top: 5px solid #aaaaaa;
+    background-color: #14161b;
+
+    .btn {
+      svg {
+        width: 30px;
+        height: 30px;
+        margin: auto 0;
+      }
+    }
+  }
+}
+
+.btn {
+  font-size: $font-size-nav-button;
+  color: $text-color-white;
+  background-color: initial;
+  border: none;
+}
+
+.active-nav {
+  .btn {
+    color: $text-color-gray;
+    background-color: initial;
+    border: none;
+  }
+}
