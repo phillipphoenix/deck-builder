@@ -45,7 +45,7 @@ const CardsPage: React.SFC<{}> = () => {
           <h2>Welcome to the Cards page!</h2>
           <HeaderBar header="Cards">
             <Link href="/card/create">
-              <button className="btn">
+              <button>
                 <FontAwesomeIcon icon={faPlus} />
               </button>
             </Link>
@@ -53,7 +53,9 @@ const CardsPage: React.SFC<{}> = () => {
           <div>
             {cards.map((card) => (
               <Link key={card.id} href="/card/:id/edit" as={`/card/${card.id}/edit`}>
-                <CardItem cardData={card} />
+                <a>
+                  <CardItem cardData={card} />
+                </a>
               </Link>
             ))}
           </div>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import pageStyles from "../../Page.module.scss";
 import PageHeader from "../../../components/page-header/page-header";
+import HeaderBar from "../../../components/header-bar/header-bar";
+import EditCard from "../../../components/edit-card/edit-card";
 import Nav from "../../../components/navigation/navigation";
 import { CardData } from "../../../types/card-data";
 
@@ -10,8 +12,13 @@ const header = "Deck Builder";
 
 const EditCardPage: React.SFC<any> = () => {
   const router = useRouter();
+  const [cardId, setCardId] = useState("");
 
-  const { id: cardId } = router.query;
+  useEffect(() => {
+    const { id } = router.query as { id: string };
+    setCardId(id);
+    console.log("SETTING CARD ID:", id);
+  }, []);
 
   const subHeader = `Edit card: ${cardId}`;
 
@@ -31,7 +38,10 @@ const EditCardPage: React.SFC<any> = () => {
 
       <div className={pageStyles["main-container"]}>
         <main className={pageStyles.main}>
-          <h2>Edit a card!</h2>
+          <HeaderBar header="Edit a card" backHref="/" />
+          <div>
+            <EditCard cardId={cardId} navigateBack={() => router.back()} />
+          </div>
         </main>
         <footer className={pageStyles.footer}>Build with ☕ by Phillip</footer>
       </div>

@@ -1,0 +1,35 @@
+@import "variables";
+@import "colours";
+
+.buttons-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-family: $font-family;
+  font-size: 1rem;
+  font-weight: 200;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: $default-border-radius;
+
+  background-color: $btn-bgr-color;
+  color: $btn-color;
+  border: 2px solid $btn-border-color;
+
+  &:hover {
+    background-color: $btn-bgr-hover-color;
+    color: $btn-hover-color;
+    border: 2px solid $btn-border-hover-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

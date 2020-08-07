@@ -16,7 +16,9 @@ const HeaderBar: React.SFC<HeaderBarProps> = ({ header, backHref, backAs, childr
       <h3 className={styles["header-bar__headline"]}>
         {backHref && (
           <Link href={backHref} as={backAs}>
-            <FontAwesomeIcon icon={faArrowLeft} />
+            <a>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </a>
           </Link>
         )}
         <span>{header}</span>

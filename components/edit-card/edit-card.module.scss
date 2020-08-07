@@ -1,0 +1,41 @@
+@import "variables";
+@import "colours";
+@import "buttons";
+
+.edit-card {
+  .form {
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      input,
+      textarea {
+        padding: 0.3rem;
+        border-radius: $default-border-radius;
+      }
+    }
+
+    .error-messages {
+      color: $form-text-color-error;
+    }
+  }
+
+  .action-bar {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn {
+      @extend .buttons-btn;
+
+      flex: 1 1;
+
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
