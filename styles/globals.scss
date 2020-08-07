@@ -36,7 +36,9 @@ textarea {
 }
 
 .btn {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   text-decoration: none;
   margin: 0;
   padding: 0.5rem 1rem;
@@ -63,4 +65,9 @@ textarea {
   &:focus {
     outline: none;
   }
+}
+
+svg {
+  width: 1em;
+  height: 1em;
 }

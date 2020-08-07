@@ -29,6 +29,9 @@
   color: $text-color-white;
   background-color: initial;
   border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .active-nav {

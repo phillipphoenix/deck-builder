@@ -1,16 +1,19 @@
+import React from "react";
 import Head from "next/head";
-import pageStyles from "./Page.module.scss";
-import PageHeader from "../components/header/header";
-import Nav from "../components/navigation/navigation";
+import pageStyles from "../Page.module.scss";
+import PageHeader from "../../components/page-header/page-header";
+import Nav from "../../components/navigation/navigation";
+import { CardData } from "../../types/card-data";
+import HeaderBar from "../../components/header-bar/header-bar";
 
 const header = "Deck Builder";
-const subHeader = "Cards";
+const subHeader = "Create card";
 
-const CardsPage: React.SFC<{}> = () => {
+const CreateCardPage: React.SFC<any> = () => {
   return (
     <div className={pageStyles.container}>
       <Head>
-        <title>Deck Builder | Cards</title>
+        <title>Deck Builder | Create Card</title>
       </Head>
 
       <div
@@ -23,7 +26,7 @@ const CardsPage: React.SFC<{}> = () => {
 
       <div className={pageStyles["main-container"]}>
         <main className={pageStyles.main}>
-          <h2>Welcome to the Cards page!</h2>
+          <HeaderBar header="Create a card" backHref="/" />
         </main>
         <footer className={pageStyles.footer}>Build with ☕ by Phillip</footer>
       </div>
@@ -35,4 +38,4 @@ const CardsPage: React.SFC<{}> = () => {
   );
 };
 
-export default CardsPage;
+export default CreateCardPage;

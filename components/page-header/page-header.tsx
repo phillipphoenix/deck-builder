@@ -1,4 +1,4 @@
-import styles from "./header.module.scss";
+import styles from "./page-header.module.scss";
 
 export interface HeaderProps {
   header: string;

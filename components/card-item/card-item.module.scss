@@ -1,0 +1,16 @@
+.card-item {
+  border: 5px solid #14161b;
+  border-radius: 5px;
+  background-color: #d7d7d7;
+  color: #4e4e4e;
+  padding: 0.5rem 1rem;
+
+  margin-bottom: 0.8rem;
+
+  display: flex;
+
+  &__name {
+    font-weight: 700;
+    flex: 1 1 auto;
+  }
+}
