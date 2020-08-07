@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import pageStyles from "../../Page.module.scss";
@@ -12,13 +12,8 @@ const header = "Deck Builder";
 
 const EditCardPage: React.SFC<any> = () => {
   const router = useRouter();
-  const [cardId, setCardId] = useState("");
 
-  useEffect(() => {
-    const { id } = router.query as { id: string };
-    setCardId(id);
-    console.log("SETTING CARD ID:", id);
-  }, []);
+  const cardId = useMemo(() => router.query.id as string, [router]);
 
   const subHeader = `Edit card: ${cardId}`;
 

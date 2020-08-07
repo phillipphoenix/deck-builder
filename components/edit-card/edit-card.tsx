@@ -10,7 +10,7 @@ export interface editCardPage {
 }
 
 const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
-  const [id, onIdChange, setId] = useInput(cardId);
+  const [id, onIdChange, setId] = useInput(cardId ?? "");
   const [name, onNameChange, setName] = useInput("");
   const [description, onDescriptionChange, setDescription] = useInput("");
 
@@ -31,7 +31,7 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
         setDescription(card.description);
       }
     });
-  }, []);
+  }, [cardId]);
 
   const navigateToCards = () => {
     navigateBack();

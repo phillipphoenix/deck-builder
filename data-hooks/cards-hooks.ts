@@ -10,7 +10,7 @@ const getAllCardsFromLocalStorage = (): Promise<CardData[]> => {
     if (!cardDataString) {
       resolve([]);
     } else {
-      const cardsData = JSON.parse(cardDataString) as CardData[];
+      const cardsData = JSON.parse(cardDataString).map((cardData) => new CardData(cardData));
 
       resolve(cardsData);
     }
