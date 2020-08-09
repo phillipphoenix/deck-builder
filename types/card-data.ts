@@ -6,6 +6,6 @@ export class CardData {
   constructor(partial: Partial<CardData>) {
     this.id = partial.id;
     this.name = partial.name;
-    this.description = partial.name;
+    this.description = partial.description;
   }
 }
