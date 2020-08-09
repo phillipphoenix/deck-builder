@@ -1,5 +1,6 @@
 @import "variables";
 @import "colours";
+@import "layouts";
 
 .container {
   min-height: 100vh;
@@ -41,6 +42,10 @@
 
   .main {
     flex: 1 1;
+
+    .item-list {
+      @extend .list__2-columns;
+    }
   }
 
   .footer {

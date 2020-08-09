@@ -1,5 +1,6 @@
 import { CardData } from "./CardData";
 import Saveable from "./saveable";
+import LocalStorageRepository from "../ORM/LocalStorageRepository";
 
 export class DeckData extends Saveable<DeckData> {
   static type = "DeckData";
@@ -17,3 +18,5 @@ export class DeckData extends Saveable<DeckData> {
   description: string;
   cards: CardData[];
 }
+
+export const DeckDataRepo = new LocalStorageRepository(DeckData);

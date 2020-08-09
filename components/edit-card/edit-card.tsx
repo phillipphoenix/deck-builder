@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./edit-card.module.scss";
 import useInput from "../../hooks/use-input";
 
-import { useCardDataRepo } from "../../data-hooks/cards-hooks";
+import { useCardDataRepo } from "../../data-hooks/useCardDataRepo";
 import { CardData } from "../../types/CardData";
 
 export interface editCardPage {

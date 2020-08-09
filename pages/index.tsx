@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import pageStyles from "./Page.module.scss";
-import styles from "./index.module.scss";
 import PageHeader from "../components/page-header/page-header";
 import Nav from "../components/navigation/navigation";
 import { CardData } from "../types/CardData";
@@ -11,7 +10,7 @@ import CardItem from "../components/card-item/card-item";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useCardDataRepo } from "../data-hooks/cards-hooks";
+import { useCardDataRepo } from "../data-hooks/useCardDataRepo";
 
 const header = "Deck Builder";
 const subHeader = "Cards";
@@ -55,7 +54,7 @@ const CardsPage: React.SFC<{}> = () => {
               </button>
             </Link>
           </HeaderBar>
-          <div className={styles["card-list"]}>
+          <div className={pageStyles["item-list"]}>
             {cards.map((card) => (
               <Link key={card.id} href="/card/:id/edit" as={`/card/${card.id}/edit`}>
                 <a>
