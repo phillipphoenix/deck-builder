@@ -19,12 +19,10 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
   const [fetchCard, saveCard] = useCardData();
 
   useEffect(() => {
-    console.log("AFTER RENDER", cardId);
     if (!cardId) {
       return;
     }
     fetchCard(cardId).then((card) => {
-      console.log("CARD FETCHED:", card);
       if (card) {
         setId(card.id);
         setName(card.name);
@@ -62,7 +60,14 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
       <div className={styles.form}>
         <div className={styles["input-group"]}>
           <label>Card ID *</label>
-          <input name="id" type="text" value={id} onChange={onIdChange} disabled={!!cardId} />
+          <input name="id" type="text" value={id} onChange={onIdChange} />
+          <p className={styles.small}>
+            Card IDs will be used for identification and for sorting of cards.
+          </p>
+          <p className={styles.small}>
+            Be careful not to reuse IDs from other cards. It can render you unable to access other
+            cards with the same ID.
+          </p>
         </div>
         <div className={styles["input-group"]}>
           <label>Card Name *</label>

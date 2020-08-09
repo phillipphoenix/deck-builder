@@ -1,0 +1,5 @@
+@import "layouts";
+
+.card-list {
+  @extend .list__2-columns;
+}

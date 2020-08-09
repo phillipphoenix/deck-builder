@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import pageStyles from "./Page.module.scss";
+import styles from "./index.module.scss";
 import PageHeader from "../components/page-header/page-header";
 import Nav from "../components/navigation/navigation";
 import { CardData } from "../types/card-data";
@@ -22,6 +23,10 @@ const CardsPage: React.SFC<{}> = () => {
 
   useEffect(() => {
     fetchAllCards().then((fetchedCards) => {
+      // Sort cards alphabetically by ID.
+      fetchedCards.sort((cardA, cardB) =>
+        cardA.id === cardB.id ? 0 : cardA.id > cardB.id ? 1 : -1
+      );
       setCards(fetchedCards);
     });
   }, []);
@@ -50,7 +55,7 @@ const CardsPage: React.SFC<{}> = () => {
               </button>
             </Link>
           </HeaderBar>
-          <div>
+          <div className={styles["card-list"]}>
             {cards.map((card) => (
               <Link key={card.id} href="/card/:id/edit" as={`/card/${card.id}/edit`}>
                 <a>

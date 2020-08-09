@@ -1,0 +1,16 @@
+.list {
+  display: grid;
+}
+
+.list {
+  &__2-columns {
+    @extend .list;
+
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    align-content: stretch;
+    justify-items: stretch;
+    justify-content: stretch;
+  }
+}
