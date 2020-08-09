@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./edit-card.module.scss";
 import useInput from "../../hooks/use-input";
 
-import { useCardData } from "../../data-hooks/cards-hooks";
+import { useCardDataRepo } from "../../data-hooks/cards-hooks";
+import { CardData } from "../../types/CardData";
 
 export interface editCardPage {
   cardId?: string;
@@ -16,13 +17,13 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
 
   const [error, setError] = useState("");
 
-  const [fetchCard, saveCard] = useCardData();
+  const cardDataRepo = useCardDataRepo();
 
   useEffect(() => {
     if (!cardId) {
       return;
     }
-    fetchCard(cardId).then((card) => {
+    cardDataRepo.findById(cardId).then((card) => {
       if (card) {
         setId(card.id);
         setName(card.name);
@@ -41,18 +42,35 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
       return;
     }
 
-    saveCard(
-      {
-        id,
-        name,
-        description,
-      },
-      cardId
-    )
-      .then(() => {
-        navigateToCards();
-      })
-      .catch((err) => setError(err.message));
+    // If we don't have a prior card ID, we are creating a new card.
+    // Else we are updating an existing card.
+    if (!cardId) {
+      cardDataRepo
+        .create(
+          new CardData({
+            id,
+            name,
+            description,
+          })
+        )
+        .then(() => {
+          navigateToCards();
+        })
+        .catch((err) => setError(err.message));
+    } else {
+      cardDataRepo
+        .update(
+          new CardData({
+            id,
+            name,
+            description,
+          })
+        )
+        .then(() => {
+          navigateToCards();
+        })
+        .catch((err) => setError(err.message));
+    }
   };
 
   return (
@@ -60,13 +78,9 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
       <div className={styles.form}>
         <div className={styles["input-group"]}>
           <label>Card ID *</label>
-          <input name="id" type="text" value={id} onChange={onIdChange} />
+          <input name="id" type="text" value={id} onChange={onIdChange} disabled={!!cardId} />
           <p className={styles.small}>
             Card IDs will be used for identification and for sorting of cards.
-          </p>
-          <p className={styles.small}>
-            Be careful not to reuse IDs from other cards. It can render you unable to access other
-            cards with the same ID.
           </p>
         </div>
         <div className={styles["input-group"]}>

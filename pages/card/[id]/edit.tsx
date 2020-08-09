@@ -6,7 +6,7 @@ import PageHeader from "../../../components/page-header/page-header";
 import HeaderBar from "../../../components/header-bar/header-bar";
 import EditCard from "../../../components/edit-card/edit-card";
 import Nav from "../../../components/navigation/navigation";
-import { CardData } from "../../../types/card-data";
+import { CardData } from "../../../types/CardData";
 
 const header = "Deck Builder";
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import pageStyles from "../../Page.module.scss";
 import PageHeader from "../../../components/page-header/page-header";
 import Nav from "../../../components/navigation/navigation";
-import { CardData } from "../../../types/card-data";
+import { CardData } from "../../../types/CardData";
 
 const header = "Deck Builder";
 

@@ -3,7 +3,7 @@ import styles from "./card-item.module.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { CardData } from "../../types/card-data";
+import { CardData } from "../../types/CardData";
 
 export interface cardItemProps {
   cardData: CardData;

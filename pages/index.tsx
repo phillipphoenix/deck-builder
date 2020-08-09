@@ -4,14 +4,14 @@ import pageStyles from "./Page.module.scss";
 import styles from "./index.module.scss";
 import PageHeader from "../components/page-header/page-header";
 import Nav from "../components/navigation/navigation";
-import { CardData } from "../types/card-data";
-import { useAllCardsData } from "../data-hooks/cards-hooks";
+import { CardData } from "../types/CardData";
 import Link from "next/link";
 import HeaderBar from "../components/header-bar/header-bar";
 import CardItem from "../components/card-item/card-item";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useCardDataRepo } from "../data-hooks/cards-hooks";
 
 const header = "Deck Builder";
 const subHeader = "Cards";
@@ -19,10 +19,10 @@ const subHeader = "Cards";
 const CardsPage: React.SFC<{}> = () => {
   const [cards, setCards] = useState<CardData[]>([]);
 
-  const fetchAllCards = useAllCardsData();
+  const cardDataRepo = useCardDataRepo();
 
   useEffect(() => {
-    fetchAllCards().then((fetchedCards) => {
+    cardDataRepo.getAll().then((fetchedCards) => {
       // Sort cards alphabetically by ID.
       fetchedCards.sort((cardA, cardB) =>
         cardA.id === cardB.id ? 0 : cardA.id > cardB.id ? 1 : -1
