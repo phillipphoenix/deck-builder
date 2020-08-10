@@ -1,0 +1,16 @@
+.checkbox {
+  position: relative;
+  box-sizing: border-box;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  margin-top: 7px;
+
+  &:hover {
+    background-color: #ccc;
+  }
+
+  &.selected {
+    background-color: rgb(34, 127, 189);
+  }
+}
