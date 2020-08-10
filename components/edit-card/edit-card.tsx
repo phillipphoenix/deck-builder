@@ -11,7 +11,6 @@ export interface editCardPage {
 }
 
 const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
-  const [id, onIdChange, setId] = useInput(cardId ?? "");
   const [name, onNameChange, setName] = useInput("");
   const [description, onDescriptionChange, setDescription] = useInput("");
 
@@ -25,7 +24,6 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
     }
     cardDataRepo.findById(cardId).then((card) => {
       if (card) {
-        setId(card.id);
         setName(card.name);
         setDescription(card.description);
       }
@@ -37,8 +35,8 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
   };
 
   const saveAction = () => {
-    if (!id || !name) {
-      setError("Both ID and name is required!");
+    if (!name) {
+      setError("Name is required!");
       return;
     }
 
@@ -48,7 +46,6 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
       cardDataRepo
         .create(
           new CardData({
-            id,
             name,
             description,
           })
@@ -61,7 +58,7 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
       cardDataRepo
         .update(
           new CardData({
-            id,
+            id: cardId,
             name,
             description,
           })
@@ -76,13 +73,6 @@ const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
   return (
     <div className={styles["edit-card"]}>
       <div className={styles.form}>
-        <div className={styles["input-group"]}>
-          <label>Card ID *</label>
-          <input name="id" type="text" value={id} onChange={onIdChange} disabled={!!cardId} />
-          <p className={styles.small}>
-            Card IDs will be used for identification and for sorting of cards.
-          </p>
-        </div>
         <div className={styles["input-group"]}>
           <label>Card Name *</label>
           <input name="name" type="text" value={name} onChange={onNameChange} />

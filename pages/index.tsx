@@ -24,7 +24,7 @@ const CardsPage: React.SFC<{}> = () => {
     cardDataRepo.getAll().then((fetchedCards) => {
       // Sort cards alphabetically by ID.
       fetchedCards.sort((cardA, cardB) =>
-        cardA.id === cardB.id ? 0 : cardA.id > cardB.id ? 1 : -1
+        cardA.name === cardB.name ? 0 : cardA.name > cardB.name ? 1 : -1
       );
       setCards(fetchedCards);
     });

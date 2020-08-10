@@ -84,7 +84,8 @@ export default class LocalStorageRepository<T extends Saveable<T>> implements IR
       }
 
       // Remove old value and add the input.
-      const updatedValues = all.filter((val) => val.id !== input.id).push(input);
+      const updatedValues = all.filter((val) => val.id !== input.id);
+      updatedValues.push(input);
 
       // Save the list again.
       const dataString = JSON.stringify(updatedValues);

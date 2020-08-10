@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import pageStyles from "../../Page.module.scss";
@@ -7,15 +7,23 @@ import HeaderBar from "../../../components/header-bar/header-bar";
 import EditCard from "../../../components/edit-card/edit-card";
 import Nav from "../../../components/navigation/navigation";
 import { CardData } from "../../../types/CardData";
+import { useCardDataRepo } from "../../../data-hooks/useCardDataRepo";
 
 const header = "Deck Builder";
 
 const EditCardPage: React.SFC<any> = () => {
   const router = useRouter();
-
   const cardId = useMemo(() => router.query.id as string, [router]);
+  const cardDataRepo = useCardDataRepo();
+  const [card, setCard] = useState<CardData>(null);
 
-  const subHeader = `Edit card: ${cardId}`;
+  useEffect(() => {
+    if (cardId) {
+      cardDataRepo.findById(cardId).then((cardData) => setCard(cardData));
+    }
+  }, [cardId]);
+
+  const subHeader = `Edit card: ${card?.name}`;
 
   return (
     <div className={pageStyles.container}>
