@@ -5,12 +5,12 @@ import useInput from "../../hooks/use-input";
 import { useCardDataRepo } from "../../data-hooks/useCardDataRepo";
 import { CardData } from "../../types/CardData";
 
-export interface editCardPage {
+export interface editCardPageProps {
   cardId?: string;
   navigateBack: () => void;
 }
 
-const EditCard: React.SFC<editCardPage> = ({ cardId, navigateBack }) => {
+const EditCard: React.SFC<editCardPageProps> = ({ cardId, navigateBack }) => {
   const [name, onNameChange, setName] = useInput("");
   const [description, onDescriptionChange, setDescription] = useInput("");
 
