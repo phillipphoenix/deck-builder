@@ -1,0 +1,19 @@
+.item-with-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .item-with-button {
+    &--item {
+      flex: 1 1;
+    }
+
+    &--button-right {
+      margin-left: 1rem;
+    }
+
+    &--button-small {
+      max-width: 3rem;
+    }
+  }
+}

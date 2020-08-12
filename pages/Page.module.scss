@@ -1,6 +1,7 @@
 @import "variables";
 @import "colours";
 @import "layouts";
+@import "buttons";
 
 .container {
   min-height: 100vh;
@@ -45,6 +46,10 @@
 
     .item-list {
       @extend .list__2-columns;
+    }
+
+    button {
+      @extend .buttons-btn;
     }
   }
 

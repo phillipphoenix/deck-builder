@@ -1,0 +1,64 @@
+@import "variables";
+@import "colours";
+@import "buttons";
+
+.edit-play-session {
+  .form {
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      input,
+      select,
+      textarea {
+        padding: 0.3rem;
+        border-radius: $default-border-radius;
+      }
+
+      .item-with-input {
+        display: flex;
+        flex-direction: row;
+
+        &--input-right {
+          margin-left: 1rem;
+        }
+
+        &--input-small {
+          max-width: 3rem;
+        }
+      }
+    }
+
+    .small {
+      font-size: 0.8rem;
+    }
+
+    .notice-message {
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+
+    .error-message {
+      color: $form-text-color-error;
+    }
+  }
+
+  .action-bar {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn {
+      @extend .buttons-btn;
+
+      flex: 1 1;
+
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

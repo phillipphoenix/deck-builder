@@ -6,7 +6,7 @@ import { useCardDataRepo } from "../../data-hooks/useCardDataRepo";
 import { CardData } from "../../types/CardData";
 import { useDeckDataRepo } from "../../data-hooks/useDeckDataRepo";
 import { DeckData } from "../../types/DeckData";
-import CardItem from "../card-item/card-item";
+import Item from "../card-item/item";
 
 export interface editDeckPageProps {
   deckId?: string;
@@ -134,7 +134,7 @@ const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
           <label>Select cards in deck</label>
           {allCards.map((card) => (
             <div key={card.id} className={styles["item-with-input"]}>
-              <CardItem cardData={card} />
+              <Item itemData={card} />
               <input
                 className={`${styles["item-with-input--input-right"]} ${styles["item-with-input--input-small"]}`}
                 type="number"

@@ -6,7 +6,7 @@ import Nav from "../components/navigation/navigation";
 import { CardData } from "../types/CardData";
 import Link from "next/link";
 import HeaderBar from "../components/header-bar/header-bar";
-import CardItem from "../components/card-item/card-item";
+import Item from "../components/card-item/item";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -22,10 +22,9 @@ const CardsPage: React.SFC<{}> = () => {
 
   useEffect(() => {
     cardDataRepo.getAll().then((fetchedCards) => {
-      // Sort cards alphabetically by ID.
-      fetchedCards.sort((cardA, cardB) =>
-        cardA.name === cardB.name ? 0 : cardA.name > cardB.name ? 1 : -1
-      );
+      // Sort cards alphabetically by name.
+      fetchedCards = fetchedCards.sortByAttr((card) => card.name, 0);
+      // fetchedCards.sort((cardA, cardB) => (cardA.name > cardB.name ? 1 : -1));
       setCards(fetchedCards);
     });
   }, []);
@@ -58,7 +57,7 @@ const CardsPage: React.SFC<{}> = () => {
             {cards.map((card) => (
               <Link key={card.id} href="/card/:id/edit" as={`/card/${card.id}/edit`}>
                 <a>
-                  <CardItem cardData={card} />
+                  <Item itemData={card} />
                 </a>
               </Link>
             ))}
