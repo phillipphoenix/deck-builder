@@ -1,3 +1,13 @@
+# Resources
+
+## Icons
+
+Icons are grabbed from Iconfinder from the [Smashicons - Flat packages](https://www.iconfinder.com/families/smashicons-flat).
+
+Some icons are for instance found in the [Leisure pack](https://www.iconfinder.com/iconsets/leisure-flat).
+
+# Development & deployment
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

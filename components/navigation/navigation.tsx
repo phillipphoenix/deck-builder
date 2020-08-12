@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook, faLayerGroup, faPlay } from "@fortawesome/free-solid-svg-icons";
+import CardIcon from "../../resources/playing-card.svg";
+import CardsIcon from "../../resources/playing-cards.svg";
+import PlayIcon from "../../resources/flag-play.svg";
 
 import styles from "./navigation.module.scss";
 
@@ -9,17 +10,17 @@ const Nav: React.SFC<{}> = () => {
     <nav className={`${styles.navigation} ${styles.navigation__bottom}`}>
       <Link href="/">
         <span className={styles.btn}>
-          <FontAwesomeIcon icon={faBook} />
+          <CardIcon />
         </span>
       </Link>
       <Link href="/decks">
         <span className={styles.btn}>
-          <FontAwesomeIcon icon={faLayerGroup} />
+          <CardsIcon />
         </span>
       </Link>
       <Link href="/play">
         <span className={styles.btn}>
-          <FontAwesomeIcon icon={faPlay} />
+          <PlayIcon />
         </span>
       </Link>
     </nav>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, ChangeEvent } from "react";
 import styles from "./edit-deck.module.scss";
 import useInput from "../../hooks/use-input";
 
@@ -7,8 +7,6 @@ import { CardData } from "../../types/CardData";
 import { useDeckDataRepo } from "../../data-hooks/useDeckDataRepo";
 import { DeckData } from "../../types/DeckData";
 import CardItem from "../card-item/card-item";
-import Checkbox from "../form-elements/checkbox/checkbox";
-import { access } from "fs";
 
 export interface editDeckPageProps {
   deckId?: string;
@@ -18,9 +16,9 @@ export interface editDeckPageProps {
 const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
   const [name, onNameChange, setName] = useInput("");
   const [description, onDescriptionChange, setDescription] = useInput("");
-  const [deckCards, setDeckCards] = useState([]);
+  const [deckCards, setDeckCards] = useState<{ [cardId: string]: number }>({});
   const [allCards, setAllCards] = useState<CardData[]>([]);
-  const [cardOptions, setCardOptions] = useState<{ [cardId: string]: boolean }>([]);
+  const [cardAmounts, setCardAmounts] = useState<{ [cardId: string]: number }>({});
 
   const [error, setError] = useState("");
 
@@ -48,34 +46,38 @@ const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
   }, [deckId]);
 
   useEffect(() => {
-    const cardOptions = allCards.reduce(
-      (acc, card) => ({ ...acc, [card.id]: deckCards.some((c) => c.id === card.id) }),
-      {}
-    );
-    setCardOptions(cardOptions);
-    console.log("CARD OPTIONS:", cardOptions);
+    setCardAmounts(deckCards);
+    console.log("CARDS IN DECK:", deckCards);
   }, [allCards, deckCards]);
 
   const navigateToCards = () => {
     navigateBack();
   };
 
-  const updateSelectedCard = (cardId: string) => {
+  const updateCardAmount = (cardId: string, amount: number) => {
     // Toggles the selection of a card.
-    setCardOptions((prevSelectedCards) => {
-      return {
-        ...prevSelectedCards,
-        [cardId]: !prevSelectedCards[cardId],
-      };
+    setCardAmounts((prevCardAmounts) => {
+      if (amount > 0) {
+        return {
+          ...prevCardAmounts,
+          [cardId]: amount,
+        };
+      }
+      // If the amount is 0 or below, delete the card from the deck.
+      delete prevCardAmounts[cardId];
+      return prevCardAmounts;
     });
   };
 
-  const selectedCardIds = useMemo<string[]>(() => {
-    return Object.keys(cardOptions).reduce(
-      (acc, cardOptionId) => (cardOptions[cardOptionId] ? [...acc, cardOptionId] : acc),
-      []
-    );
-  }, [cardOptions]);
+  const onCardAmountChange = (cardId: string, evt: ChangeEvent<HTMLInputElement>) => {
+    const amount = evt.target.valueAsNumber;
+    if (!Number.isInteger(amount) || amount < 0) {
+      evt.target.value = "0";
+      updateCardAmount(cardId, 0);
+    } else {
+      updateCardAmount(cardId, amount);
+    }
+  };
 
   const saveAction = () => {
     if (!name) {
@@ -83,8 +85,7 @@ const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
       return;
     }
 
-    // Create an array of all the selected cards.
-    const cards = selectedCardIds.map((cardId) => allCards.find((c) => c.id === cardId));
+    console.log("SAVING DECK - CARDS:", cardAmounts);
 
     // If we don't have a prior card ID, we are creating a new card.
     // Else we are updating an existing card.
@@ -94,7 +95,7 @@ const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
           new DeckData({
             name,
             description,
-            cards,
+            cards: cardAmounts,
           })
         )
         .then(() => {
@@ -108,7 +109,7 @@ const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
             id: deckId,
             name,
             description,
-            cards,
+            cards: cardAmounts,
           })
         )
         .then(() => {
@@ -132,14 +133,14 @@ const EditDeck: React.SFC<editDeckPageProps> = ({ deckId, navigateBack }) => {
         <div className={styles["input-group"]}>
           <label>Select cards in deck</label>
           {allCards.map((card) => (
-            <div key={card.id} className={styles["item-with-checkbox"]}>
-              <Checkbox
-                name={card.id}
-                value={card.id}
-                checked={selectedCardIds.some((scId) => scId === card.id)}
-                onChangeValue={(cardId) => updateSelectedCard(cardId)}
-              />
+            <div key={card.id} className={styles["item-with-input"]}>
               <CardItem cardData={card} />
+              <input
+                className={`${styles["item-with-input--input-right"]} ${styles["item-with-input--input-small"]}`}
+                type="number"
+                defaultValue={cardAmounts[card.id]}
+                onBlur={(e) => onCardAmountChange(card.id, e)}
+              />
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import "ts-array-ext";
 import "../styles/globals.scss";
 
 import type { AppProps /*, AppContext */ } from "next/app";

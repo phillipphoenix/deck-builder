@@ -11,6 +11,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CardItem from "../components/card-item/card-item";
+import { TotalCardsInDeck } from "../utils/DeckUtils";
 
 const header = "Deck Builder";
 const subHeader = "Decks";
@@ -58,7 +59,7 @@ const DecksPage: React.SFC<{}> = () => {
             {decks.map((deck) => (
               <Link key={deck.id} href="/deck/:id/edit" as={`/deck/${deck.id}/edit`}>
                 <a>
-                  <CardItem cardData={deck} />
+                  <CardItem cardData={deck} amount={TotalCardsInDeck(deck)} />
                 </a>
               </Link>
             ))}
