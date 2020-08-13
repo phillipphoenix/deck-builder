@@ -16,16 +16,16 @@ export interface itemProps {
 
 const Item: React.SFC<itemProps> = ({ itemData, amount }) => {
   return (
-    <div className={styles["card-item"]}>
-      <span className={styles["card-item__name"]}>{itemData.name}</span>
+    <div className={styles["item"]}>
+      <span className={styles["item__name"]}>{itemData.name}</span>
       {amount && (
-        <span className={styles["card-item__amount"]}>
+        <span className={styles["item__amount"]}>
           {amount}
           <CardsIcon />
         </span>
       )}
       {itemData.description && (
-        <span className={styles["card-item__description-icon"]}>
+        <span className={styles["item__description-icon"]}>
           <DescriptionIcon />
         </span>
       )}

@@ -6,7 +6,7 @@ import PageHeader from "../components/page-header/page-header";
 import Nav from "../components/navigation/navigation";
 import Link from "next/link";
 import HeaderBar from "../components/header-bar/header-bar";
-import Item from "../components/card-item/item";
+import Item from "../components/item/item";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { PlaySessionData } from "../types/PlaySessionData";

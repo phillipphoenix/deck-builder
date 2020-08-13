@@ -19,8 +19,25 @@
   &__actions {
     justify-self: flex-end;
 
+    display: flex;
+    flex-direction: row;
+
+    > *:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+
     button {
       @extend .buttons-btn;
+      &:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+
+      svg {
+        min-width: 20px;
+        * {
+          fill: white;
+        }
+      }
     }
   }
 }

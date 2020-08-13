@@ -1,0 +1,44 @@
+.deck-and-discard-piles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 10px;
+  grid-template-areas:
+    "header-left header-right"
+    "content-left content-right"
+    "actions-left actions-right";
+
+  margin-bottom: 1rem;
+
+  .deck-header {
+    grid-area: header-left;
+    margin-bottom: 0.5rem;
+  }
+
+  .discard-header {
+    grid-area: header-right;
+    margin-bottom: 0.5rem;
+  }
+
+  .deck-pile {
+    grid-area: content-left;
+  }
+
+  .discard-pile {
+    grid-area: content-right;
+  }
+
+  .deck-actions {
+    grid-area: actions-left;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+
+  .discard-actions {
+    grid-area: actions-right;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+}

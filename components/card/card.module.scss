@@ -1,0 +1,49 @@
+.card {
+  width: 100%;
+  height: 241px;
+  border: 2px solid #14151b;
+  border-radius: 5px;
+  background-color: #d7d7d7;
+  color: #4e4e4e;
+
+  box-shadow: gray;
+
+  &__header {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #14151b;
+  }
+
+  &__image {
+    height: 100px;
+    border-bottom: 1px solid #14151b;
+    background-color: #3a3b41;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__description {
+    padding: 0.5rem 1rem;
+    height: 100px;
+    overflow-y: auto;
+    font-size: 0.75rem;
+  }
+
+  &__back {
+    border: 5px solid white;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--red {
+      background-color: rgb(184, 47, 47);
+    }
+
+    svg {
+      width: 58px;
+      height: 58px;
+    }
+  }
+}

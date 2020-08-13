@@ -10,7 +10,7 @@ import HeaderBar from "../components/header-bar/header-bar";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Item from "../components/card-item/item";
+import Item from "../components/item/item";
 import { TotalCardsInDeck } from "../utils/DeckUtils";
 
 const header = "Deck Builder";

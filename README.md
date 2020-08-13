@@ -2,7 +2,11 @@
 
 ## Icons
 
-Icons are grabbed from Iconfinder from the [Smashicons - Flat packages](https://www.iconfinder.com/families/smashicons-flat).
+Icons are grabbed from Iconfinder from several packages.
+
+Non-abstract icons are found in these packages: [Smashicons - Flat packages](https://www.iconfinder.com/families/smashicons-flat).
+
+Abstract icons (like arrows) are found in this package: [KMG Design - Arrow (flat)](https://www.iconfinder.com/iconsets/arrow-flat-2)
 
 Some icons are for instance found in the [Leisure pack](https://www.iconfinder.com/iconsets/leisure-flat).
 

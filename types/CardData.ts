@@ -8,11 +8,13 @@ export class CardData extends Saveable<CardData> {
     super(CardData);
     this.id = partial.id;
     this.name = partial.name;
+    this.imgUrl = partial.imgUrl;
     this.description = partial.description;
   }
 
   id: string;
   name: string;
+  imgUrl?: string;
   description: string;
 }
 

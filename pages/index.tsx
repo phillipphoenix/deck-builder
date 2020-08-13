@@ -6,17 +6,21 @@ import Nav from "../components/navigation/navigation";
 import { CardData } from "../types/CardData";
 import Link from "next/link";
 import HeaderBar from "../components/header-bar/header-bar";
-import Item from "../components/card-item/item";
+import { useCardDataRepo } from "../data-hooks/useCardDataRepo";
 
+import Item from "../components/item/item";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useCardDataRepo } from "../data-hooks/useCardDataRepo";
+import MaximizeIcon from "../resources/maximize.svg";
+import MinimizeIcon from "../resources/minimize.svg";
+import Card from "../components/card/card";
 
 const header = "Deck Builder";
 const subHeader = "Cards";
 
 const CardsPage: React.SFC<{}> = () => {
   const [cards, setCards] = useState<CardData[]>([]);
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
   const cardDataRepo = useCardDataRepo();
 
@@ -47,6 +51,16 @@ const CardsPage: React.SFC<{}> = () => {
         <main className={pageStyles.main}>
           <h2>Welcome to the Cards page!</h2>
           <HeaderBar header="Cards">
+            {isExpanded && (
+              <button onClick={() => setIsExpanded(false)}>
+                <MinimizeIcon />
+              </button>
+            )}
+            {!isExpanded && (
+              <button onClick={() => setIsExpanded(true)}>
+                <MaximizeIcon />
+              </button>
+            )}
             <Link href="/card/create">
               <button>
                 <FontAwesomeIcon icon={faPlus} />
@@ -57,7 +71,8 @@ const CardsPage: React.SFC<{}> = () => {
             {cards.map((card) => (
               <Link key={card.id} href="/card/:id/edit" as={`/card/${card.id}/edit`}>
                 <a>
-                  <Item itemData={card} />
+                  {isExpanded && <Card cardData={card} />}
+                  {!isExpanded && <Item itemData={card} />}
                 </a>
               </Link>
             ))}

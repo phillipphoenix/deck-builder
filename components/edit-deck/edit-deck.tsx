@@ -6,7 +6,7 @@ import { useCardDataRepo } from "../../data-hooks/useCardDataRepo";
 import { CardData } from "../../types/CardData";
 import { useDeckDataRepo } from "../../data-hooks/useDeckDataRepo";
 import { DeckData } from "../../types/DeckData";
-import Item from "../card-item/item";
+import Item from "../item/item";
 
 export interface editDeckPageProps {
   deckId?: string;
