@@ -10,6 +10,7 @@ export class PlaySessionData extends Saveable<PlaySessionData> {
     this.id = partial.id;
     this.name = partial.name;
     this.description = partial.description;
+    this.deckId = partial.deckId;
     this.cardPile = partial.cardPile || [];
     this.hand = partial.hand || [];
     this.discardPile = partial.discardPile || [];

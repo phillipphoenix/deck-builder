@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useMemo, ChangeEvent } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./edit-play-session.module.scss";
 import useInput from "../../hooks/use-input";
 
-import Item from "../card-item/item";
 import { DeckData } from "../../types/DeckData";
 import { useDeckDataRepo } from "../../data-hooks/useDeckDataRepo";
 import { usePlaySessionDataRepo } from "../../data-hooks/usePlaySessionDataRepo";
@@ -27,6 +26,9 @@ const EditPlaySession: React.SFC<editPlaySessionPageProps> = ({ playSessionId, n
   useEffect(() => {
     deckDataRepo.getAll().then((fetchedDecks) => {
       setAllDecks(fetchedDecks);
+      if (fetchedDecks && fetchedDecks.length > 0) {
+        setSelectedDeckId(fetchedDecks[0].id);
+      }
     });
   }, []);
 
@@ -43,6 +45,10 @@ const EditPlaySession: React.SFC<editPlaySessionPageProps> = ({ playSessionId, n
     });
   }, [playSessionId]);
 
+  useEffect(() => {
+    console.log("SELECTED DECK ID CHANGED: ", selectedDeckId);
+  }, [selectedDeckId]);
+
   const navigateToCards = () => {
     navigateBack();
   };
@@ -52,6 +58,12 @@ const EditPlaySession: React.SFC<editPlaySessionPageProps> = ({ playSessionId, n
       setError("Name is required!");
       return;
     }
+
+    console.log("Create play session with following props:", {
+      name,
+      description,
+      deckId: selectedDeckId,
+    });
 
     // If we don't have a prior card ID, we are creating a new card.
     // Else we are updating an existing card.
@@ -98,7 +110,7 @@ const EditPlaySession: React.SFC<editPlaySessionPageProps> = ({ playSessionId, n
         </div>
         <div className={styles["input-group"]}>
           <label>Select deck for play session</label>
-          <select value={selectedDeckId} onChange={(e) => setSelectedDeckId(e.target.value)}>
+          <select value={selectedDeckId} onChange={onSelectedDeckIdChange}>
             {allDecks.map((deck) => (
               <option key={deck.id} value={deck.id}>
                 {deck.name}

@@ -1,11 +1,17 @@
 import React, { useState, ChangeEvent, Dispatch } from "react";
 
-export default function useInput<T>(
-  initialValue: T
-): [T, Dispatch<ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>>, Dispatch<T>] {
+/**
+ * This type represent all input event types (for instance inputs, selects and text areas).
+ */
+type EventType =
+  | ChangeEvent<HTMLInputElement>
+  | ChangeEvent<HTMLTextAreaElement>
+  | ChangeEvent<HTMLSelectElement>;
+
+export default function useInput<T>(initialValue: T): [T, Dispatch<EventType>, Dispatch<T>] {
   const [value, setValue] = useState<T>(initialValue);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: EventType) => {
     const inputValue: T = e.target.value as any;
     setValue(inputValue);
   };
