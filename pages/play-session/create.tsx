@@ -10,7 +10,7 @@ import EditPlaySession from "../../components/edit-play-session/edit-play-sessio
 const header = "Deck Builder";
 const subHeader = "Setup Play Session";
 
-const CreateCardPage: React.SFC<any> = () => {
+const CreatePlaySessionPage: React.SFC<any> = () => {
   const router = useRouter();
 
   return (
@@ -44,4 +44,4 @@ const CreateCardPage: React.SFC<any> = () => {
   );
 };
 
-export default CreateCardPage;
+export default CreatePlaySessionPage;
