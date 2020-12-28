@@ -1,0 +1,48 @@
+type Project @collection(name: "projects") {
+  name: String!
+  cards: [Card!]
+  decks: [Deck!]
+  playSesions: [PlaySession!]
+}
+
+type Card @collection(name: "cards") {
+  name: String!
+  imgUrl: String
+  description: String
+  project: Project!
+  decks: [Deck!]
+  cardPiles: [PlaySession!] @relation(name: "play_session_card_pile")
+  hands: [PlaySession!] @relation(name: "play_session_hand")
+  discardPiles: [PlaySession!] @relation(name: "play_session_discard_pile")
+}
+
+type Deck @collection(name: "decks") {
+  name: String!
+  description: String!
+  project: Project!
+  cards: [Card!]
+}
+
+type PlaySession @collection(name: "play_sessions") {
+  name: String!
+  description: String
+  deck: Deck!
+  project: Project!
+  cardPile: [Card!] @relation(name: "play_session_card_pile")
+  hand: [Card!] @relation(name: "play_session_hand")
+  discardPile: [Card!] @relation(name: "play_session_discard_pile")
+}
+
+# type Address @embedded {
+#   street: String!
+#   city: String!
+#   state: String!
+#   zipCode: String!
+# }
+
+type Query {
+  allProjects: [Project!]! @index(name: "all_projects")
+  allCards: [Card!]! @index(name: "all_cards")
+  allDecks: [Deck!]! @index(name: "all_decks")
+  allPlaySessions: [PlaySession!]! @index(name: "all_play_sessions")
+}
