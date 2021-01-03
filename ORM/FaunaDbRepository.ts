@@ -29,6 +29,9 @@ export default class FaunaDbRepository<T extends Saveable<T>> implements IReposi
     this.logger = new Logger(`ORM: ${classRefInit.name}`);
   }
 
+  // TODO: Maybe use the method described here: https://medium.com/technest/crud-app-with-next-js-faunadb-and-graphql-388be7141bee
+  // It might be easier than making a new repo for each of the data types (which is probably required).
+
   getAll(): Promise<T[]> {
     // TODO: This will not work generically, as this specifies the table in the DB.
     const query = gql`
