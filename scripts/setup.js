@@ -78,6 +78,9 @@ readline.question(`Please provide the FaunaDB admin key\n`, (adminKey) => {
 
   // ********************************************************
   // NOTE: THIS IS THE OLD PART BELOW. MAKING IT BETTER ABOVE!
+  // This script should be able to update schema, which could be useful for CI.
+  // UPDATE: 2021-01-03
+  // Might be easier to make it from scratch.
   // ********************************************************
 
   streamToPromise(stream)
